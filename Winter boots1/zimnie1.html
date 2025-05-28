@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Корзина покупок</title>
+    <link rel="icon" href="logo.png" type="image/png">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1a1a1a;
+            color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 80%;
+            margin: 20px auto;
+            background-color: #333;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+        }
+
+        .product {
+            display: flex;
+            align-items: center;
+        }
+        .product-image {
+            width: 200px;
+            height: 200px;
+            margin-right: 20px;
+        }
+        .product-images-thumbs img {
+            width: 50px;
+            height: 50px;
+            margin-right: 10px;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+        .product-images-thumbs img:hover {
+            border-color: #888;
+        }
+        .product-details {
+            flex-grow: 1;
+        }
+        .size-selector {
+            margin: 10px 0;
+        }
+        .size-selector select {
+            padding: 5px;
+            font-size: 16px;
+            background-color: #444;
+            color: #f0f0f0;
+            border: 1px solid #666;
+            border-radius: 5px;
+        }
+        .description {
+            margin: 10px 0;
+        }
+        .delivery-info {
+            margin: 20px 0;
+            padding: 10px;
+            background-color: #444;
+            border: 1px solid #555;
+            border-radius: 5px;
+            color: #ddd;
+        }
+        .add-to-cart {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #e63946;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+        }
+        .add-to-cart:hover {
+            background-color: #d62828;
+        }
+        .popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;3
+        }
+        .popup-image {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.9);
+        }
+         .footer-container {
+      background-color: #333;
+      color: #fff;
+      padding: 40px 20px;
+      font-family: Arial, sans-serif;
+    }
+
+    .footer-sections {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    .footer-section {
+      flex: 1 1 200px;
+      margin: 10px;
+    }
+
+    .footer-section h3 {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    .footer-section ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .footer-section ul li {
+      margin-bottom: 8px;
+    }
+
+    .footer-section ul li a {
+      color: #fff;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .footer-section ul li a:hover {
+      color: #f90;
+    }
+
+    .social-media li {
+      display: inline;
+      margin-right: 10px;
+    }
+          .footer-bottom {
+      text-align: center;
+      margin-top: 20px;
+      border-top: 1px solid #555;
+      padding-top: 10px;
+    }
+
+    .footer-bottom p {
+      margin: 5px 0;
+    }
+
+    .footer-bottom a {
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .footer-bottom a:hover {
+      text-decoration: underline;
+    }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Корзина</h1>
+    <div class="product">
+        <div class="product-image">
+            <img id="mainImage" src="Зимний обувь1.jpg" alt="Обувь" width="200" height="200">
+        </div>
+        <div class="product-details">
+            <h2>Зимние ботинки Columbia</h2>
+            <p class="description">Удобные и теплые ботинки. Отличная амортизация и поддержка для ваших ног.</p>
+            <div class="size-selector">
+                <label for="size">Выберите размер:</label>
+                <select id="size" name="size" title="Выберите размер обуви">
+                    <option value="36">36</option>
+                    <option value="37">37</option>
+                    <option value="38">38</option>
+                    <option value="39">39</option>
+                    <option value="40">40</option>
+                    <option value="41">41</option>
+                    <option value="42">42</option>
+                    <option value="43">43</option>
+                    <option value="44">44</option>
+                    <option value="45">45</option>
+                </select>
+            </div>
+            <div class="product-images-thumbs">
+                <img src="Зимний обувь1.jpg" alt="Маленькая картинка 1" onclick="showPopup('Зимний обувь1.jpg')">
+                <img src="Зимний обувь1.2.jpg" alt="Маленькая картинка 2" onclick="showPopup('Зимний обувь1.2.jpg')">
+                <img src="Зимний обувь1.3.jpg" alt="Маленькая картинка 3" onclick="showPopup('Зимний обувь1.3.jpg')">
+            </div>
+            <button class="add-to-cart" onclick="addToCart()">Добавить в корзину</button>
+        </div>
+    </div>
+    <div class="delivery-info">
+        <h3>Доставка</h3>
+        <p>Доставка по Якутску и улусам бесплатная. Принимаем заказы с доставкой в регионы.</p>
+    </div>
+</div>
+<div class="popup-overlay" id="popupOverlay" onclick="hidePopup()">
+    <img id="popupImage" class="popup-image" src="" alt="Увеличенная картинка">
+</div>
+<script>
+    function changeImage(src) {
+        document.getElementById("mainImage").src = src;
+    }
+    function showPopup(src) {
+        document.getElementById("popupImage").src = src;
+        document.getElementById("popupOverlay").style.display = "flex";
+    }
+    function hidePopup() {
+        document.getElementById("popupOverlay").style.display = "none";
+    }
+    function addToCart() {
+        alert("Товар добавлен в корзину!");
+    }
+</script>
+<footer>
+  <div class="footer-container">
+    <div class="footer-sections">
+      <div class="footer-section">
+        <h3>Компания</h3>
+        <ul>
+          <li><a href="#">О компании</a></li>
+          <li><a href="#">Наши магазины</a></li>
+          <li><a href="#">Контакты</a></li>
+          <li><a href="#">Карьера</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Помощь покупателю</h3>
+        <ul>
+          <li><a href="#">Как оформить заказ</a></li>
+          <li><a href="#">Доставка и оплата</a></li>
+          <li><a href="#">Возврат товара</a></li>
+          <li><a href="#">Часто задаваемые вопросы</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Юридическая информация</h3>
+        <ul>
+          <li><a href="#">Политика конфиденциальности</a></li>
+          <li><a href="#">Пользовательское соглашение</a></li>
+          <li><a href="#">Правила продажи</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Следите за нами</h3>
+        <ul class="social-media">
+          <li><a href="https://instagram.com/access.shop_2022?igshid=YmMyMTA2M2Y=" target="_blank">Instagram</a></li>
+          <li><a href="https://chat.whatsapp.com/GPYKHf8Djml332HspMM7L3" target="_blank">WhatsApp</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2024 Интернет-магазин обуви Access.production.</p>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
