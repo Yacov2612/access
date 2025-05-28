@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="img/logo.png" type="image/png">
+  <title>Access Production - Castom Design</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to bottom, #f9f9f9, #e6f7ff);
+      color: #333;
+    }
+    .header {
+      background: #333;
+      color: white;
+      text-align: center;
+      padding: 20px 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .header h1 {
+      font-size: 36px;
+      margin: 0;
+    }
+    .header p {
+      font-size: 18px;
+      margin-top: 10px;
+    }
+    .catalog {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      padding: 30px;
+    }
+    .service-card {
+      background: white;
+      border-radius: 12px;
+      width: 280px;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      overflow: hidden;
+      position: relative;
+    }
+    .service-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    }
+    .service-card img {
+      width: 100%;
+      height: auto;
+      border-bottom: 2px solid #ddd;
+    }
+    .service-card h3 {
+      font-size: 22px;
+      margin: 20px 10px 10px;
+      text-align: center;
+    }
+    .service-card p {
+      font-size: 14px;
+      color: #666;
+      text-align: center;
+      margin: 0 10px 15px;
+    }
+    .service-card .price {
+      font-size: 18px;
+      font-weight: bold;
+      color: #6a11cb;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .service-card button {
+      display: block;
+      margin: 0 auto 20px;
+      padding: 10px 20px;
+      background: linear-gradient(to right, #6a11cb, #2575fc);
+      color: white;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
+    .service-card button:hover {
+      background: linear-gradient(to right, #2575fc, #6a11cb);
+      transform: scale(1.1);
+    }
+    @keyframes gradientBackground {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    .header {
+      animation: gradientBackground 8s ease infinite;
+      background-size: 200% 200%;
+    }
+    nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+section {
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 600px;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+form {
+    display: flex;
+    flex-direction: column;
+}
+form label {
+    margin-top: 10px;
+}
+form input, form textarea {
+    padding: 10px;
+    margin-top: 5px;
+}
+form button {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #333;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+form button:hover {
+    background-color: #555;
+}
+    .footer-container {
+      background-color: #333;
+      color: #fff;
+      padding: 40px 20px;
+      font-family: Arial, sans-serif;
+    }
+    .footer-sections {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+    .footer-section {
+      flex: 1 1 200px;
+      margin: 10px;
+    }
+    .footer-section h3 {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+    .footer-section ul {
+      list-style: none;
+      padding: 0;
+    }
+    .footer-section ul li {
+      margin-bottom: 8px;
+    }
+    .footer-section ul li a {
+      color: #fff;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .footer-section ul li a:hover {
+      color: #f90;
+    }
+    .social-media li {
+      display: inline;
+      margin-right: 10px;
+    }
+    .footer-bottom {
+      text-align: center;
+      margin-top: 20px;
+      border-top: 1px solid #555;
+      padding-top: 10px;
+    }
+    .footer-bottom p {
+      margin: 5px 0;
+    }
+    .footer-bottom a {
+      color: #fff;
+      text-decoration: none;
+    }
+    .footer-bottom a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+<div class="header">
+  <h1>Access.Production - Услуги по дизайну кастомов</h1>
+  <p>Индивидуальные иллюстрации маскотов, которые воплотят вашу задумку в жизнь</p>
+</div>
+<div class="catalog">
+  <!-- Услуга 1 -->
+  <div class="service-card">
+    <img src="img\custom.jpg" alt="Custom 1">
+    <h3>Индивидуальный дизайн маскота</h3>
+    <p>Получите уникальный, профессионально разработанный маскот для ваших обувей!</p>
+  </div>
+  <div class="service-card">
+    <img src="img\custom1.jpg" alt="Custom 2">
+    <h3>Услуги</h3>
+    <p>Отправляйте свои картинки, и мы нарисуем вам на кроссовки</p>
+  </div>
+  <div class="service-card">
+    <img src="img\custom2.jpg" alt="Custom 3">
+    <h3>Скидки</h3>
+    <p>Цена зависит от сложности рисунка, если купите кроссовки у нас, скидка 10% на кастом!</p>
+  </div>
+</div>
+<main>
+              <h1 style="margin-left: 400px; margin-top: 80px; font: lighter 30px segoe ui;" id="235"><big>О нас</big></h1>
+              <p style="margin-left: 400px; margin-top: 40px; margin-right: 400px; font: lighter 16px segoe ui;"><big>Мы специализируемся на уникальном дизайне кастомов для ваших любимых кроссовок. Каждый проект - это индивидуальный подход и творчесое решение</big></p>
+              </main>
+              <section id="services">
+        <h2>Наши услуги</h2>
+        <p>Мы предлагаем:</p>
+        <ul>
+            <li>Индивидуальный дизайн кроссовок</li>
+            <li>Персонализированные рисунки и графика</li>
+            <li>Использование качественных материалов для долговечности</li>
+        </ul>
+    </section>
+    <section id="order">
+        <h2>Сделайте заказ кастомов</h2>
+        <form action="#" method="POST">
+            <label for="name">Ваше имя:</label>
+            <input type="text" id="name" name="name" required>
+            <label for="email">Ваш email:</label>
+            <input type="email" id="email" name="email" required>
+            <label for="size">Размер кроссовок:</label>
+            <input type="text" id="size" name="size" required>
+            <label for="design">Описание дизайна:</label>
+            <textarea id="design" name="design" rows="4" required></textarea>
+            <button type="submit">Отправить заказ</button>
+        </form>
+    </section>
+<footer>
+  <div class="footer-container">
+    <div class="footer-sections">
+      <div class="footer-section">
+        <h3>Компания</h3>
+        <ul>
+          <li><a href="#">О компании</a></li>
+          <li><a href="#">Наши магазины</a></li>
+          <li><a href="#">Контакты</a></li>
+          <li><a href="#">Карьера</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Помощь покупателю</h3>
+        <ul>
+          <li><a href="#">Как оформить заказ</a></li>
+          <li><a href="#">Доставка и оплата</a></li>
+          <li><a href="#">Возврат товара</a></li>
+          <li><a href="#">Часто задаваемые вопросы</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Юридическая информация</h3>
+        <ul>
+          <li><a href="#">Политика конфиденциальности</a></li>
+          <li><a href="#">Пользовательское соглашение</a></li>
+          <li><a href="#">Правила продажи</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Следите за нами</h3>
+        <ul class="social-media">
+          <li><a href="https://instagram.com/access.shop_2022?igshid=YmMyMTA2M2Y=" target="_blank" id="245">Instagram</a></li>
+          <li><a href="https://chat.whatsapp.com/GPYKHf8Djml332HspMM7L3" target="_blank">WhatsApp</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 Интернет-магазин обуви Access.production.</p>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
