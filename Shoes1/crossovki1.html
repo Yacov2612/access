@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="logo.png" type="image/png">
+    <title>Корзина покупок</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1a1a1a;
+            color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 80%;
+            margin: 20px auto;
+            background-color: #333;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+        }
+        .product {
+            display: flex;
+            align-items: center;
+        }
+        .product-image {
+            width: 200px;
+            height: 200px;
+            margin-right: 20px;
+        }
+        .product-images-thumbs img {
+            width: 50px;
+            height: 50px;
+            margin-right: 10px;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+        .product-images-thumbs img:hover {
+            border-color: #888;
+        }
+        .product-details {
+            flex-grow: 1;
+        }
+        .size-selector {
+            margin: 10px 0;
+        }
+        .size-selector select {
+            padding: 5px;
+            font-size: 16px;
+            background-color: #444;
+            color: #f0f0f0;
+            border: 1px solid #666;
+            border-radius: 5px;
+        }
+        .description {
+            margin: 10px 0;
+        }
+        .delivery-info {
+            margin: 20px 0;
+            padding: 10px;
+            background-color: #444;
+            border: 1px solid #555;
+            border-radius: 5px;
+            color: #ddd;
+        }
+        .add-to-cart {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #e63946;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+        }
+        .add-to-cart:hover {
+            background-color: #d62828;
+        }
+        .popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .popup-image {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.9);
+        }
+        .cart {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 350px;
+        height: 100%;
+        background: white;
+        color: black;
+        box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
+        padding: 20px;
+        transition: right 0.3s ease-in-out;
+        overflow-y: auto;
+    }
+    .cart.open {
+        right: 0;
+    }
+    .cart-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .close-cart {
+        background: none;
+        border: none;
+        font-size: 24px;
+        cursor: pointer;
+    }
+    .buy-btn {
+        width: 100%;
+        background: #007bff;
+        color: white;
+        padding: 10px;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+    .buy-btn:hover {
+        background: #0056b3;
+    }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Корзина</h1>
+    <div class="product">
+        <div class="product-image">
+            <img id="mainImage" src="1.jpg" alt="Обувь" width="200" height="200">
+        </div>
+        
+        <div class="product-details">
+            <h2>Модные кроссовки Nike Dunk</h2>
+            <p class="description">Удобные и стильные кроссовки для повседневного ношения. Отличная амортизация и поддержка для ваших ног.</p>
+            <div class="size-selector">
+                <label for="size">Выберите размер:</label>
+                <select id="size" name="size" title="Выберите размер обуви">
+                    <option value="40">40</option>
+                    <option value="41">41</option>
+                    <option value="42">42</option>
+                    <option value="43">43</option>
+                    <option value="44">44</option>
+                    <option value="45">45</option>
+                </select>
+            </div>
+            <div class="product-images-thumbs">
+                <img src="1.jpg" alt="Маленькая картинка 1" onclick="showPopup('1.jpg')">
+                <img src="1.1.jpg" alt="Картинка 2" onclick="showPopup('1.1.jpg')">
+                <img src="1.2.jpg" alt="Картинка 3" onclick="showPopup('1.2.jpg')">
+            </div>
+            <button class="add-to-cart" onclick="addToCart()">Добавить в корзину</button>
+        </div>
+    </div>
+    <div class="delivery-info">
+        <h3>Доставка</h3>
+        <p>Доставка по Якутску и улусам бесплатная. Принимаем заказы с доставкой в регионы.</p>
+    </div>
+</div>
+<div class="popup-overlay" id="popupOverlay" onclick="hidePopup()">
+    <img id="popupImage" class="popup-image" src="" alt="Увеличенная картинка">
+</div>
+<div class="cart" id="cart">
+    <div class="cart-header">
+        <h2>Корзина</h2>
+        <button class="close-cart" onclick="closeCart()">×</button>
+    </div>
+    <div id="cart-content"></div>
+    <button class="buy-btn">Купить</button>
+</div>
+
+<script>
+    function changeImage(src) {
+        document.getElementById("mainImage").src = src;
+    }
+    function showPopup(src) {
+        document.getElementById("popupImage").src = src;
+        document.getElementById("popupOverlay").style.display = "flex";
+    }
+    function hidePopup() {
+        document.getElementById("popupOverlay").style.display = "none";
+    }
+    function addToCart() {
+        alert("Товар добавлен в корзину!");
+    }
+    function addToCart() {
+        let size = document.getElementById("size").value;
+        let price = "3 999 ₽";
+        let description = "Удобные и стильные кроссовки Nike Dunk.";
+        
+        let cartContent = document.getElementById("cart-content");
+        cartContent.innerHTML = `
+            <p><strong>Модные кроссовки Nike Dunk</strong></p>
+            <p>Размер: ${size}</p>
+            <p>Цена: ${price}</p>
+            <p>${description}</p>
+        `;
+        
+        document.getElementById("cart").classList.add("open");
+    }
+    
+    function closeCart() {
+        document.getElementById("cart").classList.remove("open");
+    }
+</script>
+
+</body>
+</html>
