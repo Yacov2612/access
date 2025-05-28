@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Корзина покупок</title>
+    <link rel="icon" href="logo.png" type="image/png">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1a1a1a;
+            color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 80%;
+            margin: 20px auto;
+            background-color: #333;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+        }
+        .product {
+            display: flex;
+            align-items: center;
+        }
+        .product-image {
+            width: 200px;
+            height: 200px;
+            margin-right: 20px;
+        }
+        .product-images-thumbs img {
+            width: 50px;
+            height: 50px;
+            margin-right: 10px;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+        .product-images-thumbs img:hover {
+            border-color: #888;
+        }
+        .product-details {
+            flex-grow: 1;
+        }
+        .size-selector {
+            margin: 10px 0;
+        }
+        .size-selector select {
+            padding: 5px;
+            font-size: 16px;
+            background-color: #444;
+            color: #f0f0f0;
+            border: 1px solid #666;
+            border-radius: 5px;
+        }
+        .description {
+            margin: 10px 0;
+        }
+        .delivery-info {
+            margin: 20px 0;
+            padding: 10px;
+            background-color: #444;
+            border: 1px solid #555;
+            border-radius: 5px;
+            color: #ddd;
+        }
+        .add-to-cart {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #e63946;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+        }
+        .add-to-cart:hover {
+            background-color: #d62828;
+        }
+        .popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .popup-image {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.9);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Корзина</h1>
+    <div class="product">
+        <div class="product-image">
+            <img id="mainImage" src="14.jpg" alt="Обувь" width="200" height="200">
+        </div>
+        
+        <div class="product-details">
+            <h2>Модные кроссовки Nike Dunk</h2>
+            <p class="description">Удобные и стильные кроссовки для повседневного ношения. Отличная амортизация и поддержка для ваших ног.</p>
+            <div class="size-selector">
+                <label for="size">Выберите размер:</label>
+                <select id="size" name="size" title="Выберите размер обуви">
+                    <option value="40">40</option>
+                    <option value="41">41</option>
+                    <option value="42">42</option>
+                    <option value="43">43</option>
+                    <option value="44">44</option>
+                    <option value="45">45</option>
+                </select>
+            </div>
+            <div class="product-images-thumbs">
+                <img src="14.jpg" alt="Картинка 1" onclick="showPopup('14.jpg')">
+                <img src="14.1.jpg" alt="Картинка 2" onclick="showPopup('14.1.jpg')">
+                <img src="14.2.jpg" alt="Картинка 2" onclick="showPopup('14.2.jpg')">
+                <img src="14.3.jpg" alt="Картинка 2" onclick="showPopup('14.3.jpg')">
+            </div>
+            <button class="add-to-cart" onclick="addToCart()">Добавить в корзину</button>
+        </div>
+    </div>
+    <div class="delivery-info">
+        <h3>Доставка</h3>
+        <p>Доставка по Якутску и улусам бесплатная. Принимаем заказы с доставкой в регионы.</p>
+    </div>
+</div>
+<div class="popup-overlay" id="popupOverlay" onclick="hidePopup()">
+    <img id="popupImage" class="popup-image" src="" alt="Увеличенная картинка">
+</div>
+
+<script>
+    function changeImage(src) {
+        document.getElementById("mainImage").src = src;
+    }
+    function showPopup(src) {
+        document.getElementById("popupImage").src = src;
+        document.getElementById("popupOverlay").style.display = "flex";
+    }
+    function hidePopup() {
+        document.getElementById("popupOverlay").style.display = "none";
+    }
+    function addToCart() {
+        alert("Товар добавлен в корзину!");
+    }
+</script>
+
+</body>
+</html>
