@@ -97,6 +97,45 @@
             border-radius: 10px;
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.9);
         }
+        .cart {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 350px;
+        height: 100%;
+        background: white;
+        color: black;
+        box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
+        padding: 20px;
+        transition: right 0.3s ease-in-out;
+        overflow-y: auto;
+    }
+    .cart.open {
+        right: 0;
+    }
+    .cart-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .close-cart {
+        background: none;
+        border: none;
+        font-size: 24px;
+        cursor: pointer;
+    }
+    .buy-btn {
+        width: 100%;
+        background: #007bff;
+        color: white;
+        padding: 10px;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+    .buy-btn:hover {
+        background: #0056b3;
+    }
     </style>
 </head>
 <body>
@@ -139,6 +178,15 @@
     <img id="popupImage" class="popup-image" src="" alt="Увеличенная картинка">
 </div>
 
+<div class="cart" id="cart">
+    <div class="cart-header">
+        <h2>Корзина</h2>
+        <button class="close-cart" onclick="closeCart()">×</button>
+    </div>
+    <div id="cart-content"></div>
+    <button class="buy-btn">Купить</button>
+</div>
+
 <script>
     function changeImage(src) {
         document.getElementById("mainImage").src = src;
@@ -152,6 +200,25 @@
     }
     function addToCart() {
         alert("Товар добавлен в корзину!");
+    }
+    function addToCart() {
+        let size = document.getElementById("size").value;
+        let price = "3 999 ₽";
+        let description = "Удобные и стильные кроссовки Nike Dunk.";
+        
+        let cartContent = document.getElementById("cart-content");
+        cartContent.innerHTML = `
+            <p><strong>Модные кроссовки Nike Dunk</strong></p>
+            <p>Размер: ${size}</p>
+            <p>Цена: ${price}</p>
+            <p>${description}</p>
+        `;
+        
+        document.getElementById("cart").classList.add("open");
+    }
+    
+    function closeCart() {
+        document.getElementById("cart").classList.remove("open");
     }
 </script>
 
